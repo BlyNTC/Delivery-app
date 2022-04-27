@@ -5,12 +5,16 @@ const User = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     role: DataTypes.STRING,
   },
-  { timestamps: false });
+  { 
+    timestamps: false,
+  });
 
-  // user.associate = (models) => {
-  //   user.hasMany(models.BlogPost,
-  //     { foreignKey: 'userId', as: 'user-blogpost' });
-  // };
+  user.associate = (models) => {
+    user.hasMany(models.Sale, 
+      { foreignKey: 'user_id', as: 'buyer' });
+    user.hasMany(models.Sale,
+      { foreignKey: 'seller_id', as: 'seller' });
+  };
   return user;
 };
 
