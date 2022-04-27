@@ -1,9 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState(false);
+  const [disable, setDisable] = useState(true);
+
+  function validateEmail(inputEmail) {
+    const re = /\S+@\S+\.\S+/;
+    return re.test(inputEmail);
+  }
+
+  useEffect(() => {
+    const PASSWORD_LENGTH = 6;
+    if (password.length >= PASSWORD_LENGTH && validateEmail(email)) {
+      setDisable(false);
+    } else {
+      setDisable(true);
+    }
+  }, [email, password]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -49,6 +64,7 @@ function Login() {
           type="submit"
           data-testid="common_login__button-login"
           onClick={ handleSubmit }
+          disabled={ disable }
         >
           LOGIN
         </button>
