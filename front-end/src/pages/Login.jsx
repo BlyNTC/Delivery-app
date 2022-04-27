@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -26,6 +27,12 @@ function Login() {
       setEmailError(true);
     } else {
       setEmailError(false);
+      axios.post('https://the-social-back.herokuapp.com/', {
+        email,
+        password,
+      }).catch(() => {
+        setEmailError(true);
+      });
     }
   };
 
