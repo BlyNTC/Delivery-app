@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('users', {
+    await queryInterface.createTable('products', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -11,26 +11,22 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING(100),
-        allowNull: false,
-      },
-      email: {
-        type: Sequelize.STRING(100),
-        allowNull: false,
         unique: true,
-      },
-      password: {
-        type: Sequelize.STRING(100),
         allowNull: false,
       },
-      role: {
-        type: Sequelize.STRING(20),
+      price: {
+        type: Sequelize.DECIMAL(4, 2),
         allowNull: false,
+      },
+      url_image: {
+        type: Sequelize.STRING(200),
+        allowNull: false,
+        defaultValue: '',
       },
     });
   },
 
-
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('users');
-  }
+    await queryInterface.dropTable('products');
+  }  
 };
