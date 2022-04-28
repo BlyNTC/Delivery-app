@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Input from '../components/Inputs';
+import MyContext from '../context';
 
 function Register() {
   const [name, setName] = useState('');
@@ -9,6 +10,7 @@ function Register() {
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
   const [hidden, setHidden] = useState(true);
+  const { loginSuccess } = useContext(MyContext);
   const navigate = useNavigate();
 
   function validateEmail(inputEmail) {
@@ -22,7 +24,8 @@ function Register() {
       name,
       email,
       password,
-    }).then(() => {
+    }).then((res) => {
+      loginSuccess(res.data);
       navigate('/customer/products');
     }).catch(() => {
       setHidden(false);

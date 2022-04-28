@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import MyContext from '../context';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -8,6 +9,7 @@ function Login() {
   const [emailError, setEmailError] = useState(false);
   const [disable, setDisable] = useState(true);
   const navigate = useNavigate();
+  const { loginSuccess } = useContext(MyContext);
 
   function validateEmail(inputEmail) {
     const re = /\S+@\S+\.\S+/;
@@ -29,7 +31,8 @@ function Login() {
     axios.post('http://localhost:3001/login', {
       email,
       password,
-    }).then(() => {
+    }).then((res) => {
+      loginSuccess(res.data);
       navigate('/customer/products');
     }).catch(() => {
       setEmailError(true);
