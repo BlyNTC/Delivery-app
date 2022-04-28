@@ -11,9 +11,9 @@ function App() {
   return (
     <Routes>
       <Route path="/login" element={ <Login /> } />
+      <Route path="/register" element={ <Register /> } />
       <Route path="/customer/products" element={ <Products /> } />
       <Route path="*" element={ <Navigate to="/login" /> } />
-      <Route path="/register" element={ <Register /> } />
     </Routes>
   );
 }
