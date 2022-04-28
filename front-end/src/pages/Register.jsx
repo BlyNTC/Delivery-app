@@ -6,6 +6,7 @@ function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
+  const [hidden, setHidden] = useState(true);
 
   function validateEmail(inputEmail) {
     const re = /\S+@\S+\.\S+/;
@@ -20,6 +21,8 @@ function Register() {
       password,
     }).then(() => {
       navigate('/customer/products');
+    }).catch(() => {
+      setHidden(false);
     });
   }
 
@@ -67,7 +70,15 @@ function Register() {
         disabled={ disabled }
         onClick={ handleSubmit }
         data-testid="common_register__button-register"
-      > Cadastrar </button>
+      >
+        Cadastrar
+      </button>
+      <span
+        data-testid="common_register__element-invalid_register"
+        hidden={ hidden }
+      >
+        Usuario ja cadastrado
+      </span>
     </form>
 
   );

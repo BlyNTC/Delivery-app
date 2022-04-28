@@ -25,19 +25,15 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (email === '') {
+    setEmailError(false);
+    axios.post('http://localhost:3001/login', {
+      email,
+      password,
+    }).then(() => {
+      navigate('/customer/products');
+    }).catch(() => {
       setEmailError(true);
-    } else {
-      setEmailError(false);
-      axios.post('http://localhost:3001/login', {
-        email,
-        password,
-      }).then(() => {
-        navigate('/customer/products');
-      }).catch(() => {
-        setEmailError(true);
-      });
-    }
+    });
   };
 
   return (
@@ -80,10 +76,10 @@ function Login() {
           LOGIN
         </button>
       </form>
-      <button 
-        type="button" 
+      <button
+        type="button"
         data-testid="common_login__button-register"
-        onClick={() => navigate('/register')}
+        onClick={ () => navigate('/register') }
       >
         REGISTER
       </button>
