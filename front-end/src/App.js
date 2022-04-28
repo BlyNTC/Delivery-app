@@ -4,7 +4,6 @@ import Login from './pages/Login';
 import Products from './pages/Products';
 import './App.css';
 // import rockGlass from './images/rockGlass.svg';
-import { Routes, Route } from 'react-router-dom';
 import Register from './pages/Register';
 
 function App() {
