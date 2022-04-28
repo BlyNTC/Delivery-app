@@ -17,5 +17,5 @@ const validateJWT = (token, secret) => {
 
 module.exports = {
   jwtSign,
-  validateJWT
+  validateJWT,
 };
