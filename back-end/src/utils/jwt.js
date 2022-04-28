@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 
-const jwtKey = require("fs")
-  .readFileSync(`${process.cwd()}/jwt.evaluation.key`, { encoding: "utf-8" });
+const jwtKey = require('fs')
+  .readFileSync(`${process.cwd()}/jwt.evaluation.key`, { encoding: 'utf-8' });
 
 function jwtSign(payload) {
   return jwt.sign(payload, jwtKey, {

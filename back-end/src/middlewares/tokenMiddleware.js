@@ -1,6 +1,6 @@
+const rescue = require('express-rescue');
 const { throwError } = require('../utils/errors');
 const { status, messages } = require('../utils/errorsMessages');
-const rescue = require('express-rescue');
 const jwt = require('../utils/jwt');
 
 const verifyToken = rescue((req, res) => {
@@ -15,4 +15,4 @@ const verifyToken = rescue((req, res) => {
 
 module.exports = {
   verifyToken,
-}
+};

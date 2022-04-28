@@ -13,7 +13,7 @@ const create = async (body) => {
       name,
       email,
       role,
-    }
+    };
     return { ...user, token: jwtSign(user, `${process.cwd()}/jwt.evaluation.key)`) };
   }
 };
