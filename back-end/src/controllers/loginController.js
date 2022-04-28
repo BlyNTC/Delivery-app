@@ -3,6 +3,8 @@ const {
   loginService,
 } = require('../services/loginService');
 
+const { status } = require('../utils/errorsMessages');
+
 const {
   validateWithJoi,
 } = require('../utils/errors');
@@ -12,7 +14,7 @@ const loginSchema = require('../schemas/loginSchemas');
 const loginController = rescue(async (req, res) => {
   validateWithJoi(loginSchema, req.body);
   const login = await loginService(req.body);
-  res.status(200).json(login);
+  res.status(status.ok).json(login);
 });
 
 module.exports = {
