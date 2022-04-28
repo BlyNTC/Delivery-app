@@ -12,6 +12,17 @@ function Register() {
     return re.test(inputEmail);
   }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    axios.post('http://localhost:3001/register', {
+      name,
+      email,
+      password,
+    }).then(() => {
+      navigate('/customer/products');
+    });
+  }
+
   useEffect(() => {
     const NAME_LENGTH = 12;
     const PASSWORD_LENGTH = 6;
@@ -50,10 +61,11 @@ function Register() {
         value={ password }
         onChange={ (e) => setPassword(e.target.value) }
       />
-      <button 
+      <button
         type="submit"
         value="Cadastrar"
         disabled={ disabled }
+        onClick={ handleSubmit }
         data-testid="common_register__button-register"
       > Cadastrar </button>
     </form>
