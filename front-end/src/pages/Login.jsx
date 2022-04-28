@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function Login() {
@@ -6,6 +7,7 @@ function Login() {
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState(false);
   const [disable, setDisable] = useState(true);
+  const navigate = useNavigate();
 
   function validateEmail(inputEmail) {
     const re = /\S+@\S+\.\S+/;
@@ -30,6 +32,8 @@ function Login() {
       axios.post('http://localhost:3001/login', {
         email,
         password,
+      }).then(() => {
+        navigate('/customer/products');
       }).catch(() => {
         setEmailError(true);
       });
