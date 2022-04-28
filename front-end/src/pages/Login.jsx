@@ -80,7 +80,11 @@ function Login() {
           LOGIN
         </button>
       </form>
-      <button type="button" data-testid="common_login__button-register">
+      <button 
+        type="button" 
+        data-testid="common_login__button-register"
+        onClick={() => navigate('/register')}
+      >
         REGISTER
       </button>
     </div>
