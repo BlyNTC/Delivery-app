@@ -10,13 +10,13 @@ const loginService = async (reqBody) => {
   const findUser = await User.findOne({
     where: {
       email: reqBody.email,
-      password: md5(reqBody.password)
+      password: md5(reqBody.password),
     },
     attributes: { exclude: ['password'] },
     raw: true,
   });
   if (findUser) {
-    return {...findUser, token: jwtSign(findUser, `${process.cwd()}/jwt.evaluation.key)`)};
+    return { ...findUser, token: jwtSign(findUser, `${process.cwd()}/jwt.evaluation.key)`) };
   }
   err.throwError(status.notFound, messages.USER_NOT_EXISTS);
 };
