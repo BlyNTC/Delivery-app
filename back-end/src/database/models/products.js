@@ -5,11 +5,12 @@ module.exports = (sequelize, DataTypes) => {
     url_image: DataTypes.STRING(200),
   },
   { 
+    tableName: 'products',
     timestamps: false,
   });
 
   Product.associate = (models) => {
-    Product.hasMany(models.SaleProduct,
+    Product.hasMany(models.Sales_Products,
       { foreignKey: 'product_id', as: 'sale_products' });
   };
 
