@@ -3,33 +3,33 @@ import MyContext from '../context';
 
 function Header() {
   const { user, logout } = useContext(MyContext);
-
   return (
     <header>
       <nav>
         <ul>
-          <li>
-            <a href="/" data-testid="customer_products__element-navbar-link-products">
-              Produtos
-            </a>
-          </li>
-          <li>
-            <a
-              href="/customer/products"
-              data-testid="customer_products__element-navbar-link-orders"
-            >
-              MEUS PEDIDOS
-            </a>
-          </li>
+          <button
+            type="button"
+            data-testid="customer_products__element-navbar-link-products"
+          >
+            Produtos
+          </button>
+          <button
+            type="button"
+            data-testid="customer_products__element-navbar-link-orders"
+          >
+            MEUS PEDIDOS
+          </button>
         </ul>
       </nav>
       <nav>
         <ul>
-          <li>
-            <a href="/" data-testid="customer_products__element-navbar-user-full-name">
-              { user.name }
-            </a>
-          </li>
+          <button
+            type="button"
+            href="/"
+            data-testid="customer_products__element-navbar-user-full-name"
+          >
+            { user.name }
+          </button>
           <button onClick={ logout } type="button">
             <a href="/" data-testid="customer_products__element-navbar-link-logout">
               Sair

@@ -11,12 +11,13 @@ function Provider({ children }) {
   useEffect(() => {
     if (localStorage.getItem('user')) {
       setUser(JSON.parse(localStorage.getItem('user')));
+      setToken(localStorage.getItem('token'));
     }
   }, []);
 
   useEffect(() => {
     if (token) {
-      axios.defaults.headers.common.Authorization = user.token;
+      axios.defaults.headers.common.Authorization = token;
       axios.post('http://localhost:3001/loading/session').then((res) => {
         console.log(res);
         setAuth(true);
