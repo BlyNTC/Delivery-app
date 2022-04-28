@@ -8,7 +8,7 @@ const verifyToken = rescue((req, res) => {
   if (token === undefined || token === '') {
     return throwError(status.unauthorized, messages.TOKEN_NOT_FOUND);
   }
-  const verified = jwt.validateJWT(token, `${process.cwd()}/jwt.evaluation.key)`);
+  const verified = jwt.validateJWT(token);
   if (!verified) throwError(status.unauthorized, messages.INVALID_TOKEN);
   res.status(status.ok).end();
 });
