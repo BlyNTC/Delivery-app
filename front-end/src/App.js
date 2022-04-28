@@ -2,12 +2,12 @@ import React from 'react';
 import './App.css';
 // import rockGlass from './images/rockGlass.svg';
 import { Routes, Route } from 'react-router-dom';
-import Register from './pages/Registro';
+import Register from './pages/Register';
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={ <Register /> } />
+      <Route path="/register" element={ <Register /> } />
     </Routes>
   );
 }
