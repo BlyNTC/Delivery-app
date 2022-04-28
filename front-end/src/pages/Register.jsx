@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import Input from '../components/Inputs';
 
 function Register() {
@@ -7,6 +9,7 @@ function Register() {
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
   const [hidden, setHidden] = useState(true);
+  const navigate = useNavigate();
 
   function validateEmail(inputEmail) {
     const re = /\S+@\S+\.\S+/;
