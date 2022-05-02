@@ -1,17 +1,27 @@
+/* stylelint-disable-next-line selector-max-specificity */
 #root {
   display: flex;
   width: 100%;
 }
 
 html {
+
   --primary: #036b52;
+
   --secondary: #2fc18c;
+
   --tertiary: #421981;
+
   --quaternary: #056cf9;
+
   --text-dark: #001813;
+
   --text-light: #f2fffc;
-  --background: #fff;
+
+  --background: white;
+
   --fill: #eaf1ef;
+
 }
 
 body {
