@@ -10,6 +10,7 @@ function Provider({ children }) {
   const [auth, setAuth] = useState(false);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [cartPrice, setCartPrice] = useState(0);
 
   useEffect(() => {
     if (localStorage.getItem('user')) {
@@ -64,6 +65,7 @@ function Provider({ children }) {
       cart[index].qty = qty;
     }
     const newCart = cart.filter((item) => item.qty > 0);
+    setCartPrice(newCart.reduce((acc, item) => acc + item.price * item.qty, 0));
     localStorage.setItem('cart', JSON.stringify(newCart));
   };
 
@@ -92,6 +94,7 @@ function Provider({ children }) {
     products,
     qtyProduct,
     loading,
+    cartPrice,
   };
 
   return (

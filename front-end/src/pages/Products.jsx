@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import ProductCard from '../components/ProductCard';
 
 function Products() {
-  const { products } = useContext(MyContext);
+  const { products, cartPrice } = useContext(MyContext);
 
   return (
     <div>
@@ -17,6 +17,12 @@ function Products() {
           />
         )) }
       </div>
+      { cartPrice > 0 && (
+        <button type="button" className="products__total">
+          <spam>Ver Carrinho: R$</spam>
+          <spam>{ cartPrice.toFixed(2).replace('.', ',') }</spam>
+        </button>
+      ) }
     </div>
   );
 }
