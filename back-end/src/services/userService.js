@@ -18,4 +18,13 @@ const create = async (body) => {
   }
 };
 
-module.exports = { create };
+const find = async (role = undefined) => {
+  if (role) {
+    const users = await User.findAll({ where: { role } });
+  return users;
+  }
+  const users = await User.findAll();
+  return users;
+};
+
+module.exports = { create, find };
