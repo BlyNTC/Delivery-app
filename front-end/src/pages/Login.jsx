@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import MyContext from '../context';
+import '../styles/Global.css';
+import '../styles/Login.css';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -40,8 +42,8 @@ function Login() {
   };
 
   return (
-    <div>
-      <form>
+    <div className="login-container">
+      <form className="login-form">
         <label htmlFor="email">
           Login
           <input
@@ -49,6 +51,7 @@ function Login() {
             data-testid="common_login__input-email"
             name="email"
             id="email"
+            placeholder="email@trybeer.com.br"
             value={ email }
             onChange={ (e) => setEmail(e.target.value) }
           />
@@ -60,6 +63,7 @@ function Login() {
             data-testid="common_login__input-password"
             name="password"
             id="password"
+            placeholder="********"
             value={ password }
             onChange={ (e) => setPassword(e.target.value) }
           />
@@ -71,6 +75,7 @@ function Login() {
             </p>
           )}
         <button
+          className="login-button"
           type="submit"
           data-testid="common_login__button-login"
           onClick={ handleSubmit }
@@ -78,14 +83,15 @@ function Login() {
         >
           LOGIN
         </button>
+        <button
+          className="login-button"
+          type="button"
+          data-testid="common_login__button-register"
+          onClick={ () => navigate('/register') }
+        >
+          REGISTER
+        </button>
       </form>
-      <button
-        type="button"
-        data-testid="common_login__button-register"
-        onClick={ () => navigate('/register') }
-      >
-        REGISTER
-      </button>
     </div>
   );
 }
