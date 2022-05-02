@@ -3,8 +3,18 @@ import React, { useState, useContext, useEffect } from 'react';
 import MyContext from '../context';
 
 function ProductCard({ product }) {
-  const [productQty, setProductQty] = useState(0);
+  const [productQty, setProductQty] = useState(null);
   const { qtyProduct } = useContext(MyContext);
+
+  useEffect(() => {
+    const cartItem = JSON.parse(localStorage.getItem('cart'));
+    const cartId = cartItem.find((item) => item.id === product.id);
+    if (cartId) {
+      setProductQty(cartId.qty);
+    } else {
+      setProductQty(0);
+    }
+  }, [product.id]);
 
   useEffect(() => {
     if (productQty === '') {

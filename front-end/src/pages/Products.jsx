@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import MyContext from '../context';
 import Header from '../components/Header';
 import ProductCard from '../components/ProductCard';
 
 function Products() {
   const { products, cartPrice } = useContext(MyContext);
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -17,12 +19,18 @@ function Products() {
           />
         )) }
       </div>
-      { cartPrice > 0 && (
-        <button type="button" className="products__total">
-          <spam>Ver Carrinho: R$</spam>
-          <spam>{ cartPrice.toFixed(2).replace('.', ',') }</spam>
-        </button>
-      ) }
+      <button
+        type="button"
+        className="products__total"
+        data-testid="customer_products__button-cart"
+        onClick={ () => navigate('/customer/checkout') }
+        disabled={ cartPrice === 0 }
+      >
+        <spam>Ver Carrinho: R$</spam>
+        <spam data-testid="customer_products__checkout-bottom-value">
+          { cartPrice.toFixed(2).replace('.', ',') }
+        </spam>
+      </button>
     </div>
   );
 }
