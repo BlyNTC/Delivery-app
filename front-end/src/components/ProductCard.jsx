@@ -1,8 +1,17 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import MyContext from '../context';
 
 function ProductCard({ product }) {
   const [productQty, setProductQty] = useState(0);
+  const { qtyProduct } = useContext(MyContext);
+
+  useEffect(() => {
+    if (productQty === '') {
+      setProductQty(0);
+    }
+    qtyProduct(product, Number(productQty));
+  }, [productQty, product, qtyProduct]);
 
   const addProduct = () => {
     setProductQty(Number(productQty) + 1);

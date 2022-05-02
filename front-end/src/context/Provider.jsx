@@ -38,6 +38,23 @@ function Provider({ children }) {
     }
   }, [token]);
 
+  useEffect(() => {
+    if (localStorage.getItem('cart') === null || localStorage
+      .getItem('cart') === undefined) {
+      localStorage.setItem('cart', JSON.stringify({}));
+    }
+  }, []);
+
+  const qtyProduct = (product, qty) => {
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    if (qty === 0) {
+      delete cart[product.id];
+    } else {
+      cart[product.id] = qty;
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+  };
+
   const loginSuccess = (usuario) => {
     setUser(usuario);
     setToken(usuario.token);
@@ -61,6 +78,7 @@ function Provider({ children }) {
     logout,
     axios,
     products,
+    qtyProduct,
   };
 
   return (
