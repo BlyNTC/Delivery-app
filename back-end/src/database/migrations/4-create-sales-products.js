@@ -10,7 +10,7 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         references: {
-          model: 'sales',
+          model: 'Sales',
           key: 'id'
         } 
       },
@@ -33,6 +33,6 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.dropTable('salesProducts');
+    await queryInterface.dropTable('sales_products');
   }
 };
