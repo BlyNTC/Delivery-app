@@ -1,13 +1,24 @@
 const jwt = require('jsonwebtoken');
 
-function jwtSign(payload, secret) {
-  console.log('JWT SIGN PAYLOAD', payload);
-  console.log('JWT SIGN SECRET', secret);
-  return jwt.sign(payload, secret, {
+const jwtKey = require('fs')
+  .readFileSync(`${process.cwd()}/jwt.evaluation.key`, { encoding: 'utf-8' });
+
+function jwtSign(payload) {
+  return jwt.sign(payload, jwtKey, {
     expiresIn: '7d',
   });
 }
 
+const validateJWT = (token) => {
+  try {
+    const decoded = jwt.verify(token, jwtKey);
+    return decoded;
+  } catch (e) {
+    console.error(e.message);
+  }
+};
+
 module.exports = {
   jwtSign,
+  validateJWT,
 };

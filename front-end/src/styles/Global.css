@@ -1,0 +1,26 @@
+#root {
+  display: flex;
+  width: 100%;
+}
+
+html {
+  --primary: #036b52;
+  --secondary: #2fc18c;
+  --tertiary: #421981;
+  --quaternary: #056cf9;
+  --text-dark: #001813;
+  --text-light: #f2fffc;
+  --background: #fff;
+  --fill: #eaf1ef;
+}
+
+body {
+  background: var(--background);
+  display: flex;
+  height: 100vh;
+}
+
+.content {
+  margin: 0 auto;
+  width: 100%;
+}
