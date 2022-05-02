@@ -46,6 +46,10 @@ function Provider({ children }) {
     if (localStorage.getItem('cart') === null || localStorage
       .getItem('cart') === undefined) {
       localStorage.setItem('cart', JSON.stringify([]));
+    } else {
+      const cart = JSON.parse(localStorage.getItem('cart'));
+      const newCartPrice = cart.reduce((acc, item) => acc + item.price * item.qty, 0);
+      setCartPrice(newCartPrice);
     }
   }, []);
 
@@ -56,6 +60,7 @@ function Provider({ children }) {
     if (index === MINUS_ONE) {
       if (qty > 0) {
         cart.push({
+          name: product.name,
           id: product.id,
           price: product.price,
           qty,
