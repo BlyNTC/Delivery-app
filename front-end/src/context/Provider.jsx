@@ -7,12 +7,19 @@ function Provider({ children }) {
   const [user, setUser] = useState({});
   const [token, setToken] = useState('');
   const [auth, setAuth] = useState(false);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     if (localStorage.getItem('user')) {
       setUser(JSON.parse(localStorage.getItem('user')));
       setToken(localStorage.getItem('token'));
     }
+  }, []);
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/customer/products').then((res) => {
+      setProducts(res.data);
+    });
   }, []);
 
   useEffect(() => {
@@ -52,6 +59,7 @@ function Provider({ children }) {
     auth,
     logout,
     axios,
+    products,
   };
 
   return (
