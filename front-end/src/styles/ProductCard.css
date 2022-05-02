@@ -1,0 +1,40 @@
+.products {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product-card {
+  border: 1px solid #ddd;
+  margin: 15px;
+  max-width: 150px;
+  min-width: 50px;
+  padding: 15px;
+  width: 100%;
+}
+
+.product-card__img {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.product-card__input {
+  appearance: none;
+  margin: 0;
+  width: 40px;
+}
+
+.products__total {
+  bottom: 20px;
+  height: 50px;
+  position: fixed;
+  right: 20px;
+  width: auto;
+}
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}

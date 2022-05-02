@@ -16,7 +16,7 @@ const loginService = async (reqBody) => {
     raw: true,
   });
   if (findUser) {
-    return { ...findUser, token: jwtSign(findUser, `${process.cwd()}/jwt.evaluation.key)`) };
+    return { ...findUser, token: jwtSign(findUser) };
   }
   err.throwError(status.notFound, messages.USER_NOT_EXISTS);
 };

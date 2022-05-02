@@ -1,0 +1,26 @@
+* {
+  border: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+html {
+
+  --primary: #036b52;
+
+  --secondary: #2fc18c;
+
+  --tertiary: #421981;
+
+  --quaternary: #056cf9;
+
+  --text-dark: #001813;
+
+  --text-light: #f2fffc;
+
+  --background: white;
+
+  --fill: #eaf1ef;
+}

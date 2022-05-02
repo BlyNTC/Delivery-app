@@ -4,6 +4,8 @@ const app = express();
 
 app.use(require('cors')());
 
+app.use('/images', express.static('images'));
+
 app.use(require('body-parser').json());
 
 app.use('/', require('../routes'));
