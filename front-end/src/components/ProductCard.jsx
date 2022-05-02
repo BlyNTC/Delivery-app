@@ -50,7 +50,6 @@ function ProductCard({ product }) {
           </button>
           <input
             type="number"
-            defaultValue={ 0 }
             data-testid={ `customer_products__input-card-quantity-${product.id}` }
             className="product-card__input"
             onChange={ (e) => setProductQty(e.target.value) }
