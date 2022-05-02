@@ -6,6 +6,8 @@ import MyContext from './context';
 import './App.css';
 import Register from './pages/Register';
 import Checkout from './pages/Checkout';
+import Page from './pages/Page';
+import Teste from './pages/Teste';
 
 function App() {
   const { auth } = useContext(MyContext);
@@ -16,6 +18,7 @@ function App() {
         <>
           <Route path="/customer/products" element={ <Products /> } />
           <Route path="/customer/checkout" element={ <Checkout /> } />
+          <Route path="/customer/checkout" element={ <Teste /> } />
           <Route path="/login" element={ <Navigate to="/customer/products" /> } />
           <Route path="/register" element={ <Navigate to="/customer/products" /> } />
           <Route path="*" element={ <Navigate to="/customer/products" /> } />
@@ -25,7 +28,8 @@ function App() {
         <>
           <Route path="/login" element={ <Login /> } />
           <Route path="/register" element={ <Register /> } />
-          <Route path="*" element={ <Navigate to="/login" /> } />
+          <Route path="/" element={ <Navigate to="/login" /> } />
+          <Route path="/:page" element={ <Page /> } />
         </>
       )}
     </Routes>
