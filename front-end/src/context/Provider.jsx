@@ -9,6 +9,7 @@ function Provider({ children }) {
   const [token, setToken] = useState('');
   const [auth, setAuth] = useState(false);
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (localStorage.getItem('user')) {
@@ -25,15 +26,17 @@ function Provider({ children }) {
 
   useEffect(() => {
     if (token) {
+      setLoading(true);
       axios.defaults.headers.common.Authorization = token;
-      axios.post('http://localhost:3001/loading/session').then((res) => {
-        console.log(res);
+      axios.post('http://localhost:3001/loading/session').then(() => {
         setAuth(true);
+        setLoading(false);
       }).catch(() => {
         console.log('error');
         localStorage.removeItem('user');
         setUser({});
         setAuth(false);
+        setLoading(false);
       });
     }
   }, [token]);
@@ -79,6 +82,7 @@ function Provider({ children }) {
     axios,
     products,
     qtyProduct,
+    loading,
   };
 
   return (
