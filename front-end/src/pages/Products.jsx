@@ -9,12 +9,14 @@ function Products() {
   return (
     <div>
       <Header />
-      { products.map((product) => (
-        <ProductCard
-          key={ product.id }
-          product={ product }
-        />
-      )) }
+      <div className="products">
+        { products.map((product) => (
+          <ProductCard
+            key={ product.id }
+            product={ product }
+          />
+        )) }
+      </div>
     </div>
   );
 }

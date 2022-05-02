@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import MyContext from '.';
+import '../styles/ProductCard.css';
 
 function Provider({ children }) {
   const [user, setUser] = useState({});
