@@ -1,7 +1,7 @@
 const Sinon = require('sinon');
 const { expect } = require('chai');
-const productService = require('../services/productService');
-const { Product } = require('../database/models');
+const productService = require('../../services/productService');
+const { Product } = require('../../database/models');
 
 const productMock = [{
     name: 'Skol Lata 250ml',

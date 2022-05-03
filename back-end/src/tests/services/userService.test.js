@@ -1,7 +1,7 @@
 const Sinon = require('sinon');
 const { expect } = require('chai');
-const userService = require('../services/userService');
-const { User } = require('../database/models');
+const userService = require('../../services/userService');
+const { User } = require('../../database/models');
 
 const userMock = {
   dataValues: {
