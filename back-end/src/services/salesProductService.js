@@ -1,4 +1,3 @@
-// const salesService = require('./salesProductService');
 const { SalesProducts } = require('../database/models');
 
 const read = async () => {
@@ -6,17 +5,14 @@ const read = async () => {
   return salesProduts;
 };
 
-const createMany = async () => {
-  // const createdSale = await salesService.create(reqBody.sale);
-  // const createdSaleProducts = await SalesProducts.bulkCreate(reqBody.salesProducts
-  //   .map((saleProduct) => ({
-  //     saleId: 1,
-  //     productId: saleProduct.id,
-  //     quantity: saleProduct.qty,
-  //   })));
-  // return createdSaleProducts;
-  const message = { message: 'aqui' };
-  return message;
+const createMany = async (saleId, products) => {
+  const createdSaleProducts = await SalesProducts.bulkCreate(products
+    .map((saleProduct) => ({
+      saleId,
+      productId: saleProduct.id,
+      quantity: saleProduct.qty,
+    })));
+  return createdSaleProducts;
 };
 
 module.exports = { read, createMany };
