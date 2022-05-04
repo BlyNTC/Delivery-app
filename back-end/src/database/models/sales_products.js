@@ -1,18 +1,18 @@
 const Sale = (sequelize, DataTypes) => {
   const saleProducts = sequelize.define('SalesProducts', {
-    sale_id: {
+    saleId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       onUpdate: 'CASCADE',
-      as: 'saleId',
+      field: 'sale_id',
     },
-    product_id: {
+    productId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       onUpdate: 'CASCADE',
-      as: 'productId',
+      field: 'product_id',
     },
     quantity: DataTypes.INTEGER,
   },
