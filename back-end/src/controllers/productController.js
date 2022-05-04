@@ -9,9 +9,4 @@ const read = rescue(
   },
 );
 
-// const read = async (_req, res) => {
-//     const user = await Service.read();
-//     return res.status(status.ok).json(user);
-// };
-
 module.exports = { read };
