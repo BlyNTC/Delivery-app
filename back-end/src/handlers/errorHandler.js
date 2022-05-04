@@ -8,7 +8,7 @@ const errorHandler = (err, _req, res, _next) => {
     .json({ message: messages.INVALID_TOKEN }); 
   }
   if (err.name.includes('Sequelize')) {
-    return res.status(status.conflict).json({ message: messages.USER_REGISTERED });
+    return res.status(status.conflict).json({ message: err.message });
   }
   if (!code) code = 500;
   res.status(code)
