@@ -2,20 +2,24 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import OrderCard from '../components/OrderCard';
+import Header from '../components/Header';
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
 
-  useEffect(async () => {
-    const sales = await axios.get('http://localhost:3001/customer/orders');
-    // const getLocalStorage = JSON.parse(localStorage.getItem('user'));
-    // const salesById = sales.data.filter((res) => res.user_id === getLocalStorage.id);
-    setOrders(sales);
+  useEffect(() => {
+    axios.get('http://localhost:3001/customer/orders')
+      .then((response) => {
+        const getLocalStorage = JSON.parse(localStorage.getItem('user'));
+        const sales = response.data.filter((res) => res.user.id === getLocalStorage.id);
+        setOrders(sales);
+      })
+      .catch(() => setOrders([]));
   }, []);
 
   return (
     <div>
-      {/* <Headers /> */}
+      <Header />
       { orders.map((order, index) => (
         <OrderCard
           saleId={ order.id }
