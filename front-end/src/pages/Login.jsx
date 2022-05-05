@@ -35,7 +35,12 @@ function Login() {
       password,
     }).then((res) => {
       loginSuccess(res.data);
-      navigate('/customer/products');
+      const { role } = res.data;
+      console.log(role);
+      if (role !== 'administrator') {
+        return navigate('/customer/products');
+      }
+      return navigate('/admin/manage');
     }).catch(() => {
       setEmailError(true);
     });
