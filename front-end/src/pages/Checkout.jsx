@@ -3,12 +3,18 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CheckoutTable from '../components/CheckoutTable';
 import Header from '../components/Header';
-import OptionsSallers from '../components/OptionSallers';
+import OptionsSellers from '../components/OptionSellers';
 import MyContext from '../context';
+import { CheckoutValidate } from '../utils/checkoutValidate';
 
 export default function Checkout() {
   const [sellers, setSellers] = useState([]);
   const [cart, setCart] = useState([]);
+  const [formCheckout, setFormCheckout] = useState({
+    sellerId: '',
+    address: '',
+    deliveryNumber: '',
+  });
   const { cartPrice, qtyProduct } = useContext(MyContext);
   const navigate = useNavigate();
 
@@ -20,6 +26,30 @@ export default function Checkout() {
     qtyProduct(oldProduct, 0);
   };
 
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setFormCheckout({ ...formCheckout, [name]: value });
+  };
+
+  const onClickCheckout = () => {
+    const getLocalStorage = JSON.parse(localStorage.getItem('user'));
+    const checkoutBody = {
+      sale: {
+        userId: getLocalStorage.id,
+        sellerId: formCheckout.sellerId,
+        totalPrice: cartPrice,
+        deliveryAddress: formCheckout.address,
+        deliveryNumber: formCheckout.deliveryNumber,
+        status: 'PENDENTE',
+      },
+      saleProducts: cart,
+    };
+    if (!CheckoutValidate(checkoutBody)) {
+      axios.post('http://localhost:3001/customer/orders', checkoutBody).then((response) => console.log(response, 'RETORNITO'));
+      navigate('/customer/orders');
+    }
+  };
+
   useEffect(() => {
     setCart(cart);
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -29,9 +59,11 @@ export default function Checkout() {
     axios.get('http://localhost:3001/user?role=seller')
       .then((res) => {
         setSellers(res.data);
+        setFormCheckout({ ...formCheckout, sellerId: res.data[0].id });
       });
     const cartItem = JSON.parse(localStorage.getItem('cart'));
     setCart(cartItem);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -42,7 +74,7 @@ export default function Checkout() {
         <CheckoutTable products={ cart } onClickRemove={ onClickRemove } />
         <div>
           <spam>TOTAL: R$</spam>
-          <spam datatest-id="customer_checkout__element-order-total-price">
+          <spam data-testid="customer_checkout__element-order-total-price">
             {cartPrice.toFixed(2).replace('.', ',')}
           </spam>
         </div>
@@ -51,33 +83,40 @@ export default function Checkout() {
       <form>
         <label htmlFor="seller">
           P. Vendedora Responsável
-          <select name="seller" id="seller">
+          <select
+            name="sellerId"
+            id="seller"
+            onChange={ onChange }
+            data-testid="customer_checkout__select-seller"
+          >
             { sellers.map((seller) => (
-              <OptionsSallers
-                saller={ seller.name }
-                sallerId={ seller.id }
+              <OptionsSellers
+                seller={ seller.name }
+                sellerId={ seller.id }
                 key={ seller.id }
+                onChange={ onChange }
               />
             )) }
           </select>
-          <label htmlFor="adress">
+          <label htmlFor="deliveryAddress">
             Endereço
-            <input type="text" name="adress" id="adress" />
+            <input type="text" name="address" id="address" onChange={ onChange } />
           </label>
-          <label htmlFor="adress-number">
+          <label htmlFor="address-number">
             Número
             <input
               type="number"
-              name="adress-number"
-              id="adress-number"
+              name="deliveryNumber"
+              id="address-number"
               data-testid="customer_checkout__input-addressNumber"
+              onChange={ onChange }
             />
           </label>
         </label>
         <button
           type="button"
-          onClick={ () => navigate('localhost:3000/customer/orders/1') }
-          data-test-id="customer_checkout__button-submit-order"
+          onClick={ onClickCheckout }
+          data-testid="customer_checkout__button-submit-order"
         >
           Finalizar Pedido
 
