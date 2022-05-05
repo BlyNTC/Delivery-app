@@ -45,8 +45,7 @@ export default function Checkout() {
       saleProducts: cart,
     };
     if (!CheckoutValidate(checkoutBody)) {
-      axios.post('http://localhost:3001/customer/orders', checkoutBody).then((response) => console.log(response, 'RETORNITO'));
-      navigate('/customer/orders');
+      axios.post('http://localhost:3001/customer/orders', checkoutBody).then(() => navigate(`/customer/orders/${getLocalStorage.id}`));
     }
   };
 

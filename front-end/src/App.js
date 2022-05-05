@@ -8,6 +8,7 @@ import './App.css';
 import Register from './pages/Register';
 import Checkout from './pages/Checkout';
 import Page from './pages/Page';
+import OrderDetail from './pages/OrderDetail';
 
 function App() {
   const { auth } = useContext(MyContext);
@@ -17,6 +18,7 @@ function App() {
       {auth ? (
         <>
           <Route path="/customer/products" element={ <Products /> } />
+          <Route path="/customer/orders/:id" element={ <OrderDetail /> } />
           <Route path="/customer/orders" element={ <Orders /> } />
           <Route path="/customer/checkout" element={ <Checkout /> } />
           <Route path="/login" element={ <Navigate to="/customer/products" /> } />
