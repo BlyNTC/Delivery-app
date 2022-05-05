@@ -1,7 +1,9 @@
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import MyContext from '../context';
 
 function Header() {
+  const navigate = useNavigate();
   const { user, logout } = useContext(MyContext);
   return (
     <header>
@@ -10,12 +12,15 @@ function Header() {
           <button
             type="button"
             data-testid="customer_products__element-navbar-link-products"
+            onClick={ () => navigate('/customer/products') }
           >
-            Produtos
+            PRODUTOS
           </button>
           <button
             type="button"
             data-testid="customer_products__element-navbar-link-orders"
+            onClick={ () => navigate('/customer/orders') }
+
           >
             MEUS PEDIDOS
           </button>
