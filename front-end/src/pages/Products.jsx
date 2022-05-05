@@ -26,10 +26,10 @@ function Products() {
         onClick={ () => navigate('/customer/checkout') }
         disabled={ cartPrice === 0 }
       >
-        <spam>Ver Carrinho: R$</spam>
-        <spam data-testid="customer_products__checkout-bottom-value">
+        <span>Ver Carrinho: R$</span>
+        <span data-testid="customer_products__checkout-bottom-value">
           { cartPrice.toFixed(2).replace('.', ',') }
-        </spam>
+        </span>
       </button>
     </div>
   );

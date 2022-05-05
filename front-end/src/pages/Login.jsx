@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import MyContext from '../context';
+import { doLogin } from '../utils/axios';
 import '../styles/Global.css';
 import '../styles/Login.css';
 
@@ -30,11 +30,8 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setEmailError(false);
-    axios.post('http://localhost:3001/login', {
-      email,
-      password,
-    }).then((res) => {
-      loginSuccess(res.data);
+    doLogin({ email, password }).then((data) => {
+      loginSuccess(data);
       navigate('/customer/products');
     }).catch(() => {
       setEmailError(true);

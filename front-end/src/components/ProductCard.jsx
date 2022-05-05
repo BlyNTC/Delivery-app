@@ -3,7 +3,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import MyContext from '../context';
 
 function ProductCard({ product }) {
-  const [productQty, setProductQty] = useState(null);
+  const [productQty, setProductQty] = useState(0);
   const { qtyProduct } = useContext(MyContext);
 
   useEffect(() => {

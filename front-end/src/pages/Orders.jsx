@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { getOrders } from '../utils/axios';
 
 import OrderCard from '../components/OrderCard';
 import Header from '../components/Header';
@@ -8,13 +8,11 @@ export default function Orders() {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/customer/orders')
-      .then((response) => {
-        const getLocalStorage = JSON.parse(localStorage.getItem('user'));
-        const sales = response.data.filter((res) => res.userId === getLocalStorage.id);
-        setOrders(sales);
-      })
-      .catch(() => setOrders([]));
+    getOrders().then((data) => {
+      const getLocalStorage = JSON.parse(localStorage.getItem('user'));
+      const sales = data.filter((res) => res.userId === getLocalStorage.id);
+      setOrders(sales);
+    }).catch(() => setOrders([]));
   }, []);
 
   return (

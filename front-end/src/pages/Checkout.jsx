@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CheckoutTable from '../components/CheckoutTable';
@@ -6,6 +5,7 @@ import Header from '../components/Header';
 import OptionsSellers from '../components/OptionSellers';
 import MyContext from '../context';
 import { CheckoutValidate } from '../utils/checkoutValidate';
+import { postOrder, getUserSeller } from '../utils/axios';
 
 export default function Checkout() {
   const [sellers, setSellers] = useState([]);
@@ -45,7 +45,8 @@ export default function Checkout() {
       saleProducts: cart,
     };
     if (!CheckoutValidate(checkoutBody)) {
-      axios.post('http://localhost:3001/customer/orders', checkoutBody).then(() => navigate(`/customer/orders/${getLocalStorage.id}`));
+      postOrder(checkoutBody)
+        .then(() => navigate(`/customer/orders/${getLocalStorage.id}`));
     }
   };
 
@@ -55,11 +56,10 @@ export default function Checkout() {
   }, [cartPrice]);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/user?role=seller')
-      .then((res) => {
-        setSellers(res.data);
-        setFormCheckout({ ...formCheckout, sellerId: res.data[0].id });
-      });
+    getUserSeller().then((data) => {
+      setSellers(data);
+      setFormCheckout({ ...formCheckout, sellerId: data[0].id });
+    });
     const cartItem = JSON.parse(localStorage.getItem('cart'));
     setCart(cartItem);
   // eslint-disable-next-line react-hooks/exhaustive-deps
