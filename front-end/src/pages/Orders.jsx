@@ -11,7 +11,7 @@ export default function Orders() {
     axios.get('http://localhost:3001/customer/orders')
       .then((response) => {
         const getLocalStorage = JSON.parse(localStorage.getItem('user'));
-        const sales = response.data.filter((res) => res.user.id === getLocalStorage.id);
+        const sales = response.data.filter((res) => res.userId === getLocalStorage.id);
         setOrders(sales);
       })
       .catch(() => setOrders([]));
@@ -24,8 +24,8 @@ export default function Orders() {
         <OrderCard
           saleId={ order.id }
           status={ order.status }
-          date={ order.date_sale }
-          totalPrice={ order.total_price }
+          date={ order.dateSale }
+          totalPrice={ order.totalPrice }
           key={ index }
         />
       )) }
