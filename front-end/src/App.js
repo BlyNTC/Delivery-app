@@ -9,6 +9,7 @@ import Register from './pages/Register';
 import Checkout from './pages/Checkout';
 import Page from './pages/Page';
 import OrderDetail from './pages/OrderDetail';
+import Manage from './pages/Manage';
 
 function App() {
   const { auth } = useContext(MyContext);
@@ -17,13 +18,14 @@ function App() {
     <Routes>
       {auth ? (
         <>
+          <Route path="/admin/manage" element={ <Manage /> } />
           <Route path="/customer/products" element={ <Products /> } />
           <Route path="/customer/orders/:id" element={ <OrderDetail /> } />
           <Route path="/customer/orders" element={ <Orders /> } />
           <Route path="/customer/checkout" element={ <Checkout /> } />
-          <Route path="/login" element={ <Navigate to="/customer/products" /> } />
-          <Route path="/register" element={ <Navigate to="/customer/products" /> } />
-          <Route path="*" element={ <Navigate to="/customer/products" /> } />
+          {/* <Route path="/login" element={ <Navigate to="/customer/products" /> } /> */}
+          {/* <Route path="/register" element={ <Navigate to="/customer/products" /> } /> */}
+          {/* <Route path="*" element={ <Navigate to="/customer/products" /> } /> */}
 
         </>
       ) : (
