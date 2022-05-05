@@ -3,5 +3,6 @@ const saleController = require('../controllers/saleController');
 
 Router.post('/', saleController.create);
 Router.get('/', saleController.read);
+Router.get('/:id', saleController.readOne);
 
 module.exports = Router;

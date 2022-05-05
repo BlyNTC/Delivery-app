@@ -19,4 +19,17 @@ const read = async () => {
   return readSale;
 };
 
-module.exports = { read, create };
+const readOne = async (id) => {
+  const readOneSale = await Sale.findOne({
+    where: { id },
+    attributes: { exclude: ['user_id', 'seller_id'] },
+    include: [{
+      model: SalesProducts,
+      as: 'SalesProducts',
+      attributes: { exclude: ['product_id', 'sale_id'] },
+    }],
+  });
+  return readOneSale;
+};
+
+module.exports = { read, create, readOne };
