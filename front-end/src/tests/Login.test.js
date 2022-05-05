@@ -51,7 +51,7 @@ describe('Login', () => {
     expect(buttonLogin).not.toHaveAttribute('disabled');
     fireEvent.click(buttonLogin);
     await waitFor(() => {
-      expect(screen.getByText('Produtos')).toBeInTheDocument();
+      expect(screen.getByText('PRODUTOS')).toBeInTheDocument();
       expect(screen.getByText('MEUS PEDIDOS')).toBeInTheDocument();
       expect(screen.getByText('Cliente Zé Birita')).toBeInTheDocument();
       expect(screen.getByText('Sair')).toBeInTheDocument();

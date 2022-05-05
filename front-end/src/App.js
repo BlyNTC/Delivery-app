@@ -8,7 +8,6 @@ function App() {
     <Provider>
       <Rotas />
     </Provider>
-
   );
 }
 
