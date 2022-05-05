@@ -19,7 +19,7 @@ function Header() {
           <button
             type="button"
             data-testid="customer_products__element-navbar-link-orders"
-            onClick={ () => navigate('/customer/checkout') }
+            onClick={ () => navigate('/customer/orders') }
 
           >
             MEUS PEDIDOS
