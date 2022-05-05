@@ -10,4 +10,14 @@ const create = rescue(async (req, res) => {
   res.status(status.created).json(user);
 });
 
-module.exports = { create };
+const find = rescue(async (req, res) => {
+  const { role } = req.query;
+  if (role) {
+    const users = await Service.find(role);
+    return res.status(status.ok).json(users);
+  }
+  const users = await Service.find(role);
+  res.status(status.ok).json(users);
+});
+
+module.exports = { create, find };

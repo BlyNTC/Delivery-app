@@ -1,0 +1,18 @@
+const { SalesProducts } = require('../database/models');
+
+const read = async () => {
+  const salesProduts = await SalesProducts.findAll({ raw: true });
+  return salesProduts;
+};
+
+const createMany = async (saleId, products) => {
+  const createdSaleProducts = await SalesProducts.bulkCreate(products
+    .map((saleProduct) => ({
+      saleId,
+      productId: saleProduct.id,
+      quantity: saleProduct.qty,
+    })));
+  return createdSaleProducts;
+};
+
+module.exports = { read, createMany };
