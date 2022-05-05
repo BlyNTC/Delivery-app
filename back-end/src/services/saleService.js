@@ -32,4 +32,11 @@ const readOne = async (id) => {
   return readOneSale;
 };
 
-module.exports = { read, create, readOne };
+const finishOne = async (id) => {
+  const updateOneSale = await Sale.update({ status: 'ENTREGUE' }, {
+    where: { id },
+  });
+  return updateOneSale;
+};
+
+module.exports = { read, create, readOne, finishOne };
