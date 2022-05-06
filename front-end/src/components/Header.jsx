@@ -6,6 +6,15 @@ import '../styles/Header.css';
 function Header() {
   const navigate = useNavigate();
   const { user, logout } = useContext(MyContext);
+
+  const handleNavigate = () => {
+    if (user.role === 'customer') {
+      navigate('/customer/orders');
+    } else {
+      navigate('/seller/orders');
+    }
+  };
+
   return (
     <header className="header">
       <nav className="header__nav">
@@ -24,7 +33,7 @@ function Header() {
           <button
             type="button"
             data-testid="customer_products__element-navbar-link-orders"
-            onClick={ () => navigate('/customer/orders') }
+            onClick={ handleNavigate }
             className="header__nav-link"
           >
             {user.role === 'customer' ? 'MEUS PEDIDOS' : 'PEDIDOS'}
