@@ -32,7 +32,6 @@ function Login() {
     setEmailError(false);
     doLogin({ email, password }).then((data) => {
       loginSuccess(data);
-      navigate('/customer/products');
     }).catch(() => {
       setEmailError(true);
     });

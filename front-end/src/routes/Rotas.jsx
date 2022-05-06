@@ -26,14 +26,14 @@ function Rotas() {
           <Route path="/seller/orders" element={ <SellerOrders /> } />
           <Route path="/login" element={ <Navigate to="/customer/products" /> } />
           <Route path="/register" element={ <Navigate to="/customer/products" /> } />
-          <Route path="*" element={ <Navigate to="/customer/products" /> } />
+          {/* <Route path="*" element={ <Navigate to="/customer/products" /> } /> */}
         </>
       ) : (
         <>
           <Route path="/login" element={ <Login /> } />
           <Route path="/register" element={ <Register /> } />
           <Route path="/" element={ <Navigate to="/login" /> } />
-          <Route path="/:page" element={ <Page /> } />
+          <Route path="*" element={ <Page /> } />
         </>
       )}
     </Routes>
