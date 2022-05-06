@@ -10,4 +10,11 @@ const create = async (body) => {
   return userData;
 };
 
-module.exports = { create };
+const verify = async (body) => {
+  const { name } = body;
+  const users = await User.findAll({ where: { name } } );
+  console.log(users);
+  return users.length > 0;
+}
+
+module.exports = { create, verify };
