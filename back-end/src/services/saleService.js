@@ -4,7 +4,7 @@ const { createMany } = require('./salesProductService');
 const create = async (body) => {
   const newSale = await Sale.create({ dateSale: new Date(), ...body.sale });
   const insertedSaleProducts = await createMany(newSale.id, body.saleProducts);
-  return insertedSaleProducts.dataValues;
+  return insertedSaleProducts;
 };
 
 const read = async () => {

@@ -12,7 +12,7 @@ const createMany = async (saleId, products) => {
       productId: saleProduct.id,
       quantity: saleProduct.qty,
     })));
-  return createdSaleProducts;
+  return saleId;
 };
 
 module.exports = { read, createMany };
