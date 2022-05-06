@@ -1,17 +1,19 @@
-import CartItem from './CartItem';
-import CheckoutTable from './CheckoutTable';
 import Header from './Header';
 import Inputs from './Inputs';
 import OptionsSellers from './OptionSellers';
 import OrderCard from './OrderCard';
 import ProductCard from './ProductCard';
+import ProductTable from './ProductTable';
+import ProductItem from './ProductItem';
 
 export {
-  CartItem,
-  CheckoutTable,
+  // CartItem,
+  // CheckoutTable,
   Header,
   Inputs,
   OptionsSellers,
   OrderCard,
   ProductCard,
+  ProductTable,
+  ProductItem,
 };
