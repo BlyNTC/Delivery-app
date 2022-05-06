@@ -24,7 +24,6 @@ function App() {
           <Route path="/customer/orders" element={ <Orders /> } />
           <Route path="/customer/checkout" element={ <Checkout /> } />
           {/* <Route path="/login" element={ <Navigate to="/customer/products" /> } /> */}
-          {/* <Route path="/register" element={ <Navigate to="/customer/products" /> } /> */}
           {/* <Route path="*" element={ <Navigate to="/customer/products" /> } /> */}
 
         </>
