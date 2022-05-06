@@ -10,21 +10,24 @@ function Header() {
     <header className="header">
       <nav className="header__nav">
         <ul className="header__nav-list">
-          <button
-            type="button"
-            data-testid="customer_products__element-navbar-link-products"
-            onClick={ () => navigate('/customer/products') }
-            className="header__nav-link selected"
-          >
-            PRODUTOS
-          </button>
+          {user.role === 'customer'
+            && (
+              <button
+                type="button"
+                data-testid="customer_products__element-navbar-link-products"
+                onClick={ () => navigate('/customer/products') }
+                className="header__nav-link selected"
+              >
+                PRODUTOS
+              </button>
+            )}
           <button
             type="button"
             data-testid="customer_products__element-navbar-link-orders"
             onClick={ () => navigate('/customer/orders') }
             className="header__nav-link"
           >
-            MEUS PEDIDOS
+            {user.role === 'customer' ? 'MEUS PEDIDOS' : 'PEDIDOS'}
           </button>
         </ul>
       </nav>
