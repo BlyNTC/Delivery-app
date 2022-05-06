@@ -11,7 +11,7 @@ function ProductTable({ prefix, products, onClickRemove }) {
         <td>Quantidade</td>
         <td>Valor Unitário</td>
         <td>Subtotal</td>
-        <td>Remover Item</td>
+        { prefix === 'customer_checkout__' && <td>Remover Item</td>}
       </thead>
       { products.map((product, i) => (
         <ProductItem
