@@ -18,7 +18,7 @@ const Sale = (sequelize, DataTypes) => {
   },
   { 
     timestamps: false,
-    tableName: 'sales_products',
+    tableName: 'salesProducts',
   });
   
   saleProducts.associate = (models) => {
