@@ -30,6 +30,6 @@ const read = async (role = undefined) => {
 const readById = async (id) => {
   const user = await User.findByPk(id);
   return user;
-}
+};
 
 module.exports = { create, read, readById };
