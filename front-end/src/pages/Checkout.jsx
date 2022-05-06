@@ -21,7 +21,6 @@ export default function Checkout() {
   const onClickRemove = (id) => {
     const oldProduct = cart.find((item) => item.id === id);
     const newCart = cart.filter((product) => product.id !== id);
-    console.log('product', oldProduct);
     setCart(newCart);
     qtyProduct(oldProduct, 0);
   };
@@ -46,7 +45,7 @@ export default function Checkout() {
     };
     if (!CheckoutValidate(checkoutBody)) {
       postOrder(checkoutBody)
-        .then(() => navigate(`/customer/orders/${getLocalStorage.id}`));
+        .then((id) => navigate(`/customer/orders/${id}`));
     }
   };
 
