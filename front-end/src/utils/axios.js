@@ -23,6 +23,11 @@ const getUserSeller = async () => {
   return response.data;
 };
 
+const getUserById = async (id) => {
+  const response = await axios.get(`http://localhost:3001/user/${id}`);
+  return response.data;
+};
+
 const doLogin = async (user) => {
   const response = await axios.post('http://localhost:3001/login', user);
   return response.data;
@@ -39,8 +44,12 @@ const doRegister = async (user) => {
 };
 
 const getOrderById = async (id) => {
-  const response = await axios.post(`http://localhost:3001/customer/orders/${id}`);
+  const response = await axios.get(`http://localhost:3001/customer/orders/${id}`);
   return response.data;
+};
+
+const finishSale = async (id) => {
+  await axios.patch(`http://localhost:3001/customer/orders/${id}`);
 };
 
 export {
@@ -52,4 +61,6 @@ export {
   getOrders,
   doRegister,
   getOrderById,
+  finishSale,
+  getUserById,
 };
