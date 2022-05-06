@@ -8,6 +8,7 @@ import Page from '../pages/Page';
 import Checkout from '../pages/Checkout';
 import Orders from '../pages/Orders';
 import OrderDetail from '../pages/OrderDetail';
+import Manage from '../pages/Manage';
 
 function Rotas() {
   const { auth } = useContext(MyContext);
@@ -15,6 +16,7 @@ function Rotas() {
     <Routes>
       {auth ? (
         <>
+          <Route path="/admin/manage" element={ <Manage /> } />
           <Route path="/customer/products" element={ <Products /> } />
           <Route path="/customer/orders/:id" element={ <OrderDetail /> } />
           <Route path="/customer/orders" element={ <Orders /> } />
