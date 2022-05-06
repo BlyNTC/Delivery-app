@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) => {
+const Product = (sequelize, DataTypes) => {
   const Product = sequelize.define('Product', {
     name: DataTypes.STRING(100),
     price: DataTypes.DECIMAL(4, 2),
@@ -9,10 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: false,
   });
 
-  Product.associate = (models) => {
-    Product.hasMany(models.SalesProducts,
-      { foreignKey: 'product_id', as: 'sale_products' });
-  };
-
   return Product;
 }
+
+module.exports = Product;

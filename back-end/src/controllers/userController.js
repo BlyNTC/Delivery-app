@@ -10,14 +10,20 @@ const create = rescue(async (req, res) => {
   res.status(status.created).json(user);
 });
 
-const find = rescue(async (req, res) => {
+const read = rescue(async (req, res) => {
   const { role } = req.query;
   if (role) {
-    const users = await Service.find(role);
+    const users = await Service.read(role);
     return res.status(status.ok).json(users);
   }
-  const users = await Service.find(role);
+  const users = await Service.read(role);
   res.status(status.ok).json(users);
 });
 
-module.exports = { create, find };
+const readById = rescue(async (req, res) => {
+  const { id } = req.params;
+  const user = await Service.readById(id);
+  res.status(status.ok).json(user);
+});
+
+module.exports = { create, read, readById };
