@@ -10,10 +10,26 @@ export default function OrderCard({ saleId, status, date, totalPrice }) {
       data-testid={ `customer_products__element-order-date-${saleId}` }
     >
       <span>Pedido</span>
-      <span>{ saleId }</span>
-      <div>{ status }</div>
-      <span>{ date }</span>
-      <span>{ totalPrice }</span>
+      <span
+        data-testid={ `customer_orders__element-order-id-${saleId}` }
+      >
+        { saleId }
+      </span>
+      <div
+        data-testid={ `customer_orders__element-delivery-status-${saleId}` }
+      >
+        { status }
+      </div>
+      <span
+        data-testid={ `customer_orders__element-order-date-${saleId}` }
+      >
+        { date }
+      </span>
+      <span
+        data-testid={ `customer_orders__element-card-price-${saleId}` }
+      >
+        { totalPrice }
+      </span>
     </Link>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import CheckoutTable from '../components/CheckoutTable';
+import ProductTable from '../components/ProductTable';
 import Header from '../components/Header';
 import OptionsSellers from '../components/OptionSellers';
 import MyContext from '../context';
@@ -21,7 +21,6 @@ export default function Checkout() {
   const onClickRemove = (id) => {
     const oldProduct = cart.find((item) => item.id === id);
     const newCart = cart.filter((product) => product.id !== id);
-    console.log('product', oldProduct);
     setCart(newCart);
     qtyProduct(oldProduct, 0);
   };
@@ -40,13 +39,13 @@ export default function Checkout() {
         totalPrice: cartPrice,
         deliveryAddress: formCheckout.address,
         deliveryNumber: formCheckout.deliveryNumber,
-        status: 'PENDENTE',
+        status: 'Pendente',
       },
       saleProducts: cart,
     };
     if (!CheckoutValidate(checkoutBody)) {
       postOrder(checkoutBody)
-        .then(() => navigate(`/customer/orders/${getLocalStorage.id}`));
+        .then((id) => navigate(`/customer/orders/${id}`));
     }
   };
 
@@ -70,7 +69,11 @@ export default function Checkout() {
       <Header />
       <div>
         <h3>Finalizar Pedido</h3>
-        <CheckoutTable products={ cart } onClickRemove={ onClickRemove } />
+        <ProductTable
+          products={ cart }
+          onClickRemove={ onClickRemove }
+          prefix="customer_checkout__"
+        />
         <div>
           <spam>TOTAL: R$</spam>
           <spam data-testid="customer_checkout__element-order-total-price">
@@ -99,7 +102,13 @@ export default function Checkout() {
           </select>
           <label htmlFor="deliveryAddress">
             Endereço
-            <input type="text" name="address" id="address" onChange={ onChange } />
+            <input
+              type="text"
+              name="address"
+              id="address"
+              data-testid="customer_checkout__input-address"
+              onChange={ onChange }
+            />
           </label>
           <label htmlFor="address-number">
             Número

@@ -6,13 +6,13 @@ const read = async () => {
 };
 
 const createMany = async (saleId, products) => {
-  const createdSaleProducts = await SalesProducts.bulkCreate(products
+  await SalesProducts.bulkCreate(products
     .map((saleProduct) => ({
       saleId,
       productId: saleProduct.id,
       quantity: saleProduct.qty,
     })));
-  return createdSaleProducts;
+  return saleId;
 };
 
 module.exports = { read, createMany };

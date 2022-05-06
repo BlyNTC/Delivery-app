@@ -22,8 +22,8 @@ export default function Orders() {
         <OrderCard
           saleId={ order.id }
           status={ order.status }
-          date={ order.dateSale }
-          totalPrice={ order.totalPrice }
+          date={ new Date(order.dateSale).toLocaleDateString('pt-BR') }
+          totalPrice={ order.totalPrice.replace('.', ',') }
           key={ index }
         />
       )) }
