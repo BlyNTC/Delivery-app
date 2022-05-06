@@ -11,6 +11,8 @@ export default function OrderDetail() {
   const [disabled, setDisabled] = useState(true);
   const { id } = useParams();
 
+  // Ver requisito 26
+
   useEffect(() => {
     // eslint-disable-next-line
     setLoading(true);
