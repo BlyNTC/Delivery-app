@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CartItem from './CartItem';
+import ProductItem from './ProductItem';
 
-function CheckoutTable({ products, onClickRemove }) {
+function ProductTable({ prefix, products, onClickRemove }) {
   return (
     <table>
       <thead>
@@ -14,15 +14,21 @@ function CheckoutTable({ products, onClickRemove }) {
         <td>Remover Item</td>
       </thead>
       { products.map((product, i) => (
-        <CartItem key={ i } product={ product } index={ i } onClick={ onClickRemove } />
+        <ProductItem
+          key={ i }
+          product={ product }
+          index={ i }
+          onClick={ onClickRemove }
+          prefix={ prefix }
+        />
       )) }
     </table>
   );
 }
 
-CheckoutTable.propTypes = {
+ProductTable.propTypes = {
   products: PropTypes.array,
   onClickRemove: PropTypes.func,
 }.isRequired;
 
-export default CheckoutTable;
+export default ProductTable;
