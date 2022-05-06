@@ -8,19 +8,41 @@ export default function OrderCard({
   date,
   totalPrice,
   address,
+  prefix,
+  link,
 }) {
   return (
     <Link
-      to={ `/customer/orders/${saleId}` }
+      to={ link }
       key={ saleId }
-      data-testid={ `customer_products__element-order-date-${saleId}` }
+      data-testid={ `${prefix}__element-order-date-${saleId}` }
     >
       <span>Pedido</span>
-      <span>{saleId}</span>
-      <div>{status}</div>
-      <span>{date}</span>
-      <span>{totalPrice}</span>
-      {address && <span>{ address }</span>}
+      <span
+        data-testid={ `${prefix}__element-order-id-${saleId}` }
+      >
+        { saleId }
+      </span>
+      <div
+        data-testid={ `${prefix}__element-delivery-status-${saleId}` }
+      >
+        { status }
+      </div>
+      <span
+        data-testid={ `${prefix}__element-order-date-${saleId}` }
+      >
+        { date }
+      </span>
+      <span
+        data-testid={ `${prefix}__element-card-price-${saleId}` }
+      >
+        { totalPrice }
+      </span>
+      {address && (
+        <span data-testid={ `seller_orders__element-card-address-${saleId}` }>
+          {address}
+        </span>
+      )}
     </Link>
   );
 }
