@@ -40,13 +40,13 @@ export default function Checkout() {
         totalPrice: cartPrice,
         deliveryAddress: formCheckout.address,
         deliveryNumber: formCheckout.deliveryNumber,
-        status: 'PENDENTE',
+        status: 'Pendente',
       },
       saleProducts: cart,
     };
     if (!CheckoutValidate(checkoutBody)) {
       postOrder(checkoutBody)
-        .then(() => navigate(`/customer/orders/${getLocalStorage.id}`));
+      .then(() => navigate(`/customer/orders/${getLocalStorage.id}`));
     }
   };
 
@@ -99,7 +99,13 @@ export default function Checkout() {
           </select>
           <label htmlFor="deliveryAddress">
             Endereço
-            <input type="text" name="address" id="address" onChange={ onChange } />
+            <input
+              type="text"
+              name="address"
+              id="address"
+              data-testid="customer_checkout__input-address"
+              onChange={ onChange }
+            />
           </label>
           <label htmlFor="address-number">
             Número
