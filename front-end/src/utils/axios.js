@@ -36,6 +36,11 @@ const doRegister = async (user) => {
   return response.data;
 };
 
+const getOrderById = async (id) => {
+  const response = await axios.post(`http://localhost:3001/customer/orders/${id}`);
+  return response.data;
+};
+
 export {
   getProducts,
   loadSession,
@@ -44,4 +49,5 @@ export {
   doLogin,
   getOrders,
   doRegister,
+  getOrderById,
 };
