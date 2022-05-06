@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import CheckoutTable from '../components/CheckoutTable';
+import ProductTable from '../components/ProductTable';
 import Header from '../components/Header';
 import OptionsSellers from '../components/OptionSellers';
 import MyContext from '../context';
@@ -70,7 +70,11 @@ export default function Checkout() {
       <Header />
       <div>
         <h3>Finalizar Pedido</h3>
-        <CheckoutTable products={ cart } onClickRemove={ onClickRemove } />
+        <ProductTable
+          products={ cart }
+          onClickRemove={ onClickRemove }
+          prefix="customer_checkout__"
+        />
         <div>
           <spam>TOTAL: R$</spam>
           <spam data-testid="customer_checkout__element-order-total-price">
