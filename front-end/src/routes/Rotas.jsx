@@ -1,13 +1,15 @@
 import React, { useContext } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import Login from '../pages/Login';
-import Products from '../pages/Products';
-import MyContext from '../context';
-import Register from '../pages/Register';
-import Page from '../pages/Page';
-import Checkout from '../pages/Checkout';
-import Orders from '../pages/Orders';
-import OrderDetail from '../pages/OrderDetail';
+import {
+  Checkout,
+  Login,
+  OrderDetail,
+  Orders,
+  Page,
+  Products,
+  Register,
+  SellerOrders,
+} from '../pages';
 
 function Rotas() {
   const { auth } = useContext(MyContext);
@@ -19,6 +21,8 @@ function Rotas() {
           <Route path="/customer/orders/:id" element={ <OrderDetail /> } />
           <Route path="/customer/orders" element={ <Orders /> } />
           <Route path="/customer/checkout" element={ <Checkout /> } />
+          {/* TODO: verificar rota para vendedor */}
+          <Route path="/seller/orders" element={ <SellerOrders /> } />
           <Route path="/login" element={ <Navigate to="/customer/products" /> } />
           <Route path="/register" element={ <Navigate to="/customer/products" /> } />
           <Route path="*" element={ <Navigate to="/customer/products" /> } />

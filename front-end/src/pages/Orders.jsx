@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getOrders } from '../utils/axios';
 
-import OrderCard from '../components/OrderCard';
-import Header from '../components/Header';
+import { OrderCard, Header } from '../components';
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);

@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Input from '../components/Inputs';
 import MyContext from '../context';
 import { doRegister } from '../utils/axios';
+
+import { Inputs } from '../components';
 
 function Register() {
   const [name, setName] = useState('');
@@ -43,7 +44,7 @@ function Register() {
   return (
     <form>
       <h1>Cadastro</h1>
-      <Input
+      <Inputs
         type="text"
         name="Nome"
         placeholder="Digite seu nome"
@@ -51,7 +52,7 @@ function Register() {
         value={ name }
         onChange={ (e) => setName(e.target.value) }
       />
-      <Input
+      <Inputs
         type="email"
         name="Email"
         placeholder="user@email.com"
@@ -59,7 +60,7 @@ function Register() {
         value={ email }
         onChange={ (e) => setEmail(e.target.value) }
       />
-      <Input
+      <Inputs
         type="password"
         name="Senha"
         placeholder="Digite sua senha"

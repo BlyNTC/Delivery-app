@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MyContext from '../context';
-import Header from '../components/Header';
-import ProductCard from '../components/ProductCard';
+
+import { Header, ProductCard } from '../components';
 
 function Products() {
   const { products, cartPrice } = useContext(MyContext);

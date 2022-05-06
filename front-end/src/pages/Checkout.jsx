@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import CheckoutTable from '../components/CheckoutTable';
-import Header from '../components/Header';
-import OptionsSellers from '../components/OptionSellers';
 import MyContext from '../context';
 import { CheckoutValidate } from '../utils/checkoutValidate';
 import { postOrder, getUserSeller } from '../utils/axios';
+
+import {
+  CheckoutTable,
+  Header,
+  OptionsSellers,
+} from '../components';
 
 export default function Checkout() {
   const [sellers, setSellers] = useState([]);
