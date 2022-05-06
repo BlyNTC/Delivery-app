@@ -14,8 +14,7 @@ export const validateWithJoi = (schema, object) => {
 
 export const CheckoutValidate = (checkoutBody) => {
   try {
-    const validate = validateWithJoi(CheckoutSchema, checkoutBody);
-    console.log('========================>>>>>>', validate);
+    validateWithJoi(CheckoutSchema, checkoutBody);
     return false;
   } catch (error) {
     return true;
