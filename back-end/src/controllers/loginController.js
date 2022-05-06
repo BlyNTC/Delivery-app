@@ -14,7 +14,7 @@ const loginSchema = require('../schemas/loginSchemas');
 const loginController = rescue(async (req, res) => {
   validateWithJoi(loginSchema, req.body);
   const login = await loginService(req.body);
-  res.status(status.ok).json(login);
+  return res.status(status.ok).json(login);
 });
 
 module.exports = {

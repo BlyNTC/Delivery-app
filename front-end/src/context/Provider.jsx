@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import MyContext from '.';
+import { getProducts, loadSession } from '../utils/axios';
 import '../styles/ProductCard.css';
 
 function Provider({ children }) {
@@ -20,20 +20,18 @@ function Provider({ children }) {
   }, []);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/customer/products').then((res) => {
-      setProducts(res.data);
+    getProducts().then((data) => {
+      setProducts(data);
     });
   }, []);
 
   useEffect(() => {
     if (token) {
       setLoading(true);
-      axios.defaults.headers.common.Authorization = token;
-      axios.post('http://localhost:3001/loading/session').then(() => {
+      loadSession().then(() => {
         setAuth(true);
         setLoading(false);
       }).catch(() => {
-        console.log('error');
         localStorage.removeItem('user');
         setUser({});
         setAuth(false);
@@ -95,7 +93,6 @@ function Provider({ children }) {
     loginSuccess,
     auth,
     logout,
-    axios,
     products,
     qtyProduct,
     loading,

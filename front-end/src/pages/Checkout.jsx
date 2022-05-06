@@ -1,11 +1,11 @@
-import axios from 'axios';
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import CheckoutTable from '../components/CheckoutTable';
+import ProductTable from '../components/ProductTable';
 import Header from '../components/Header';
 import OptionsSellers from '../components/OptionSellers';
 import MyContext from '../context';
 import { CheckoutValidate } from '../utils/checkoutValidate';
+import { postOrder, getUserSeller } from '../utils/axios';
 
 export default function Checkout() {
   const [sellers, setSellers] = useState([]);
@@ -21,7 +21,6 @@ export default function Checkout() {
   const onClickRemove = (id) => {
     const oldProduct = cart.find((item) => item.id === id);
     const newCart = cart.filter((product) => product.id !== id);
-    console.log('product', oldProduct);
     setCart(newCart);
     qtyProduct(oldProduct, 0);
   };
@@ -40,12 +39,13 @@ export default function Checkout() {
         totalPrice: cartPrice,
         deliveryAddress: formCheckout.address,
         deliveryNumber: formCheckout.deliveryNumber,
-        status: 'PENDENTE',
+        status: 'Pendente',
       },
       saleProducts: cart,
     };
     if (!CheckoutValidate(checkoutBody)) {
-      axios.post('http://localhost:3001/customer/orders', checkoutBody).then(() => navigate(`/customer/orders/${getLocalStorage.id}`));
+      postOrder(checkoutBody)
+        .then((id) => navigate(`/customer/orders/${id}`));
     }
   };
 
@@ -55,11 +55,10 @@ export default function Checkout() {
   }, [cartPrice]);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/user?role=seller')
-      .then((res) => {
-        setSellers(res.data);
-        setFormCheckout({ ...formCheckout, sellerId: res.data[0].id });
-      });
+    getUserSeller().then((data) => {
+      setSellers(data);
+      setFormCheckout({ ...formCheckout, sellerId: data[0].id });
+    });
     const cartItem = JSON.parse(localStorage.getItem('cart'));
     setCart(cartItem);
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -70,7 +69,11 @@ export default function Checkout() {
       <Header />
       <div>
         <h3>Finalizar Pedido</h3>
-        <CheckoutTable products={ cart } onClickRemove={ onClickRemove } />
+        <ProductTable
+          products={ cart }
+          onClickRemove={ onClickRemove }
+          prefix="customer_checkout__"
+        />
         <div>
           <spam>TOTAL: R$</spam>
           <spam data-testid="customer_checkout__element-order-total-price">
@@ -99,7 +102,13 @@ export default function Checkout() {
           </select>
           <label htmlFor="deliveryAddress">
             Endereço
-            <input type="text" name="address" id="address" onChange={ onChange } />
+            <input
+              type="text"
+              name="address"
+              id="address"
+              data-testid="customer_checkout__input-address"
+              onChange={ onChange }
+            />
           </label>
           <label htmlFor="address-number">
             Número

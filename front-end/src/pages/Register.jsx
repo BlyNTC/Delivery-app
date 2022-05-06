@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import Input from '../components/Inputs';
 import MyContext from '../context';
+import { doRegister } from '../utils/axios';
 
 function Register() {
   const [name, setName] = useState('');
@@ -20,12 +20,9 @@ function Register() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    axios.post('http://localhost:3001/register', {
-      name,
-      email,
-      password,
-    }).then((res) => {
-      loginSuccess(res.data);
+    setHidden(true);
+    doRegister({ name, email, password }).then((data) => {
+      loginSuccess(data);
       navigate('/customer/products');
     }).catch(() => {
       setHidden(false);
