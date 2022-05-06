@@ -78,10 +78,10 @@ export default function Checkout() {
           prefix="customer_checkout__"
         />
         <div>
-          <spam>TOTAL: R$</spam>
-          <spam data-testid="customer_checkout__element-order-total-price">
+          <span>TOTAL: R$</span>
+          <span data-testid="customer_checkout__element-order-total-price">
             {cartPrice.toFixed(2).replace('.', ',')}
-          </spam>
+          </span>
         </div>
       </div>
       <h3>Detalhes e Endereço para entrega</h3>

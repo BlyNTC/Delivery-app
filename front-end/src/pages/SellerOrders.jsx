@@ -25,6 +25,7 @@ export default function Orders() {
           totalPrice={ order.totalPrice }
           address={ order.address }
           key={ index }
+          link={ `/seller/orders/${order.id}` }
         />
       )) }
     </div>
