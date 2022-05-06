@@ -7,6 +7,7 @@ function Manage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('seller');
+  const [error, setError] = useState(false);
 
   const validaEmail = () => {
     if (email.includes('@') && email.includes('.com')) {
@@ -30,6 +31,8 @@ function Manage() {
       email,
       password,
       role,
+    }).then().catch(() => {
+      setError(true);
     });
   };
 
@@ -90,6 +93,12 @@ function Manage() {
       >
         Cadastrar
       </button>
+      <p
+        data-testid="admin_manage__element-invalid-register"
+        hidden={ !error }
+      >
+        Usuário já existe
+      </p>
     </form>
   );
 }
