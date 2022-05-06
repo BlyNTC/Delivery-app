@@ -6,7 +6,7 @@ const read = async () => {
 };
 
 const createMany = async (saleId, products) => {
-  const createdSaleProducts = await SalesProducts.bulkCreate(products
+  await SalesProducts.bulkCreate(products
     .map((saleProduct) => ({
       saleId,
       productId: saleProduct.id,
