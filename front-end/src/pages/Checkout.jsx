@@ -46,7 +46,7 @@ export default function Checkout() {
     };
     if (!CheckoutValidate(checkoutBody)) {
       postOrder(checkoutBody)
-        .then(() => navigate(`/customer/orders/${getLocalStorage.id}`));
+        .then((response) => navigate(`/customer/orders/${response}`));
     }
   };
 
