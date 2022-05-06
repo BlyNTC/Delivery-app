@@ -9,7 +9,7 @@ export default function Orders() {
   useEffect(() => {
     getOrders().then((data) => {
       const getLocalStorage = JSON.parse(localStorage.getItem('user'));
-      const sales = data.filter((res) => res.userId === getLocalStorage.id);
+      const sales = data.filter((res) => res.sellerId === getLocalStorage.id);
       setOrders(sales);
     }).catch(() => setOrders([]));
   }, []);
