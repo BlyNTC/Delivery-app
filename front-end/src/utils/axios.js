@@ -12,6 +12,8 @@ const loadSession = async () => {
 };
 
 const postOrder = async (order) => {
+  const token = localStorage.getItem('token');
+  axios.defaults.headers.common.Authorization = token;
   const response = await axios.post('http://localhost:3001/customer/orders', order);
   return response.data;
 };
