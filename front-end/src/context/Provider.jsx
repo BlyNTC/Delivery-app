@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import MyContext from '.';
 import { getProducts, loadSession } from '../utils/axios';
 import '../styles/ProductCard.css';
@@ -11,6 +12,7 @@ function Provider({ children }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [cartPrice, setCartPrice] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (localStorage.getItem('user')) {
@@ -77,6 +79,13 @@ function Provider({ children }) {
     setToken(usuario.token);
     localStorage.setItem('user', JSON.stringify(usuario));
     localStorage.setItem('token', usuario.token);
+    if (usuario.role === 'customer') {
+      navigate('/customer/products');
+    } else if (usuario.role === 'administrator') {
+      navigate('/admin/manage');
+    } else {
+      navigate('/seller/orders');
+    }
     setAuth(true);
   };
 
