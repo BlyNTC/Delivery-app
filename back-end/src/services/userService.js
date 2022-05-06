@@ -18,7 +18,7 @@ const create = async (body) => {
   }
 };
 
-const find = async (role = undefined) => {
+const read = async (role = undefined) => {
   if (role) {
     const users = await User.findAll({ where: { role } });
   return users;
@@ -27,4 +27,9 @@ const find = async (role = undefined) => {
   return users;
 };
 
-module.exports = { create, find };
+const readById = async (id) => {
+  const user = await User.findByPk(id);
+  return user;
+}
+
+module.exports = { create, read, readById };
