@@ -10,6 +10,7 @@ import {
   Register,
   SellerOrders,
 } from '../pages';
+import MyContext from '../context';
 
 function Rotas() {
   const { auth } = useContext(MyContext);
