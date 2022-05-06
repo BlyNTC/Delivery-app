@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MyContext from '../context';
-import { doLogin } from '../utils/axios';
+// import { doLogin } from '../utils/axios';
 import '../styles/Global.css';
 import '../styles/Login.css';
 

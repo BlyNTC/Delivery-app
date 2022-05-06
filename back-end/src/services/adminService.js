@@ -12,9 +12,9 @@ const create = async (body) => {
 
 const verify = async (body) => {
   const { name } = body;
-  const users = await User.findAll({ where: { name } } );
+  const users = await User.findAll({ where: { name } });
   console.log(users);
   return users.length > 0;
-}
+};
 
 module.exports = { create, verify };
