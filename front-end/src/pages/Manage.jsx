@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
 function Manage() {
@@ -5,7 +6,7 @@ function Manage() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [tipo, setTipo] = useState('');
+  const [role, setRole] = useState('seller');
 
   const validaEmail = () => {
     if (email.includes('@') && email.includes('.com')) {
@@ -20,6 +21,16 @@ function Manage() {
       return setDisponivel(true);
     }
     return setDisponivel(false);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios.post('http://localhost:3001/admin/register', {
+      name,
+      email,
+      password,
+      role,
+    });
   };
 
   useEffect(() => {
@@ -57,23 +68,25 @@ function Manage() {
           onChange={ (e) => setPassword(e.target.value) }
         />
       </label>
-      <label htmlFor="tipo">
+      <label htmlFor="role">
         Tipo
         <select
-          name="tipo"
-          id="tipo"
+          name="role"
+          id="role"
           data-testid="admin_manage__select-role"
-          value={ tipo }
-          onChange={ (e) => setTipo(e.target.value) }
+          value={ role }
+          onChange={ (e) => setRole(e.target.value) }
         >
-          <option value="vendedor">vendedor</option>
-          <option value="administrator">administrador</option>
+          <option value="seller">Vendedor</option>
+          <option value="customer">Cliente</option>
+          <option value="administrator">Administrador</option>
         </select>
       </label>
       <button
         type="submit"
         data-testid="admin_manage__button-register"
         disabled={ !disponivel }
+        onClick={ (e) => handleSubmit(e) }
       >
         Cadastrar
       </button>
