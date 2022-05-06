@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { getOrders } from '../utils/axios';
-import { getDate } from '../utils/date';
 
 import OrderCard from '../components/OrderCard';
 import Header from '../components/Header';
@@ -19,18 +18,15 @@ export default function Orders() {
   return (
     <div>
       <Header />
-      { orders.map((order, index) => {
-        const date = getDate(order.dateSale);
-        return (
-          <OrderCard
-            saleId={ order.id }
-            status={ order.status }
-            date={ date }
-            totalPrice={ order.totalPrice.replace('.', ',') }
-            key={ index }
-          />
-        );
-      }) }
+      { orders.map((order, index) => (
+        <OrderCard
+          saleId={ order.id }
+          status={ order.status }
+          date={ new Date(order.dateSale).toLocaleDateString('pt-BR') }
+          totalPrice={ order.totalPrice.replace('.', ',') }
+          key={ index }
+        />
+      )) }
     </div>
   );
 }
