@@ -14,7 +14,6 @@ export default function OrderDetail() {
   // Ver requisito 26
 
   useEffect(() => {
-    // eslint-disable-next-line
     setLoading(true);
     getOrderById(id).then((response) => {
       setOrder(response);
@@ -36,7 +35,7 @@ export default function OrderDetail() {
         setDisabled(false);
       }
     }
-  }, [order]);
+  }, [setDisabled]);
 
   return (
     <div>
@@ -62,7 +61,7 @@ export default function OrderDetail() {
           data-testid={ 'customer_order_details__'
           + 'element-order-details-label-delivery-status' }
         >
-          { !disabled ? order.status : 'ENTREGUE' }
+          { disabled ? order.status : 'ENTREGUE' }
         </span>
         <button
           type="button"
