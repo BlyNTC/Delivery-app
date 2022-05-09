@@ -25,6 +25,7 @@ export default function Orders() {
           totalPrice={ order.totalPrice.replace('.', ',') }
           key={ index }
           link={ `/customer/orders/${order.id}` }
+          prefix="customer_orders"
         />
       )) }
     </div>
