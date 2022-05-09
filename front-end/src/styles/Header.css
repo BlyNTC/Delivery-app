@@ -1,0 +1,51 @@
+.header {
+  align-items: center;
+  background: #036b52;
+  border-bottom: 1px solid #e5e5e5;
+  display: flex;
+  height: 3.5rem;
+  justify-content: space-between;
+}
+
+.header__nav {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  width: auto;
+}
+
+.header__nav-list {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  width: auto;
+}
+
+.header__nav-link {
+  background-color: #036b52;
+  color: white;
+  cursor: pointer;
+  font-size: 1.2rem;
+  height: 100%;
+  padding-left: 40px;
+  padding-right: 40px;
+  text-decoration: none;
+}
+
+.selected {
+  background: #2fc18c;
+  color: black;
+}
+
+.name {
+  background: #421981;
+}
+
+.logout {
+  background: #056cf9;
+}
+
+.logout a {
+  color: white;
+  text-decoration: none;
+}

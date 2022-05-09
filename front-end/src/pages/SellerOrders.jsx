@@ -9,7 +9,7 @@ export default function Orders() {
   useEffect(() => {
     getOrders().then((data) => {
       const getLocalStorage = JSON.parse(localStorage.getItem('user'));
-      const sales = data.filter((res) => res.userId === getLocalStorage.id);
+      const sales = data.filter((res) => res.sellerId === getLocalStorage.id);
       setOrders(sales);
     }).catch(() => setOrders([]));
   }, []);
@@ -21,11 +21,12 @@ export default function Orders() {
         <OrderCard
           saleId={ order.id }
           status={ order.status }
-          date={ new Date(order.dateSale).toLocaleDateString('pt-BR') }
-          totalPrice={ order.totalPrice.replace('.', ',') }
+          date={ order.dateSale }
+          totalPrice={ order.totalPrice }
+          address={ order.address }
           key={ index }
-          link={ `/customer/orders/${order.id}` }
-          prefix="customer_orders"
+          link={ `/seller/orders/${order.id}` }
+          prefix="seller_orders"
         />
       )) }
     </div>

@@ -21,11 +21,11 @@ const readOne = async (id) => {
   return readOneSale;
 };
 
-const finishOne = async (id) => {
-  const updateOneSale = await Sale.update({ status: 'ENTREGUE' }, {
+const updateStatus = async (id, status) => {
+  const updateOneSale = await Sale.update({ status }, {
     where: { id },
   });
   return updateOneSale;
 };
 
-module.exports = { read, create, readOne, finishOne };
+module.exports = { read, create, readOne, updateStatus };

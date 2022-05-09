@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ProductTable from '../components/ProductTable';
-import Header from '../components/Header';
-import OptionsSellers from '../components/OptionSellers';
 import MyContext from '../context';
 import { CheckoutValidate } from '../utils/checkoutValidate';
 import { postOrder, getUserSeller } from '../utils/axios';
+
+import {
+  Header,
+  OptionsSellers,
+  ProductTable,
+} from '../components';
 
 export default function Checkout() {
   const [sellers, setSellers] = useState([]);
@@ -69,10 +72,10 @@ export default function Checkout() {
           prefix="customer_checkout__"
         />
         <div>
-          <spam>TOTAL: R$</spam>
-          <spam data-testid="customer_checkout__element-order-total-price">
+          <span>TOTAL: R$</span>
+          <span data-testid="customer_checkout__element-order-total-price">
             {cartPrice.toFixed(2).replace('.', ',')}
-          </spam>
+          </span>
         </div>
       </div>
       <h3>Detalhes e Endereço para entrega</h3>
