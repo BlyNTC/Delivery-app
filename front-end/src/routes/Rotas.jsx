@@ -9,10 +9,9 @@ import {
   Products,
   Register,
   SellerOrders,
+  Manage,
 } from '../pages';
 import MyContext from '../context';
-import Manage from '../pages/Manage';
-
 
 function Rotas() {
   const { auth } = useContext(MyContext);

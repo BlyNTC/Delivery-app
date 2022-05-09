@@ -6,6 +6,7 @@ import Page from './Page';
 import Products from './Products';
 import Register from './Register';
 import SellerOrders from './SellerOrders';
+import Manage from './Manage';
 
 export {
   Checkout,
@@ -16,4 +17,5 @@ export {
   Products,
   Register,
   SellerOrders,
+  Manage,
 };
