@@ -26,6 +26,7 @@ export default function Orders() {
           address={ order.address }
           key={ index }
           link={ `/seller/orders/${order.id}` }
+          prefix="seller_orders"
         />
       )) }
     </div>
