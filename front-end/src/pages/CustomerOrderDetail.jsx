@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
-import { getOrderById, finishSale, getUserById } from '../utils/axios';
+import { getOrderById, updateStatusSale, getUserById } from '../utils/axios';
 import ProductTable from '../components/ProductTable';
 
 export default function OrderDetail() {
@@ -23,7 +23,7 @@ export default function OrderDetail() {
   }, []);
 
   const handleClick = () => {
-    finishSale(id);
+    updateStatusSale(id, 'Entregue');
     setDisabled(true);
   };
 

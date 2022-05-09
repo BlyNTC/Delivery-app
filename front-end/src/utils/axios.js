@@ -48,8 +48,8 @@ const getOrderById = async (id) => {
   return response.data;
 };
 
-const finishSale = async (id) => {
-  await axios.patch(`http://localhost:3001/customer/orders/${id}`);
+const updateStatusSale = async (id, status) => {
+  await axios.put(`http://localhost:3001/customer/orders/${id}`, { status });
 };
 
 export {
@@ -61,6 +61,6 @@ export {
   getOrders,
   doRegister,
   getOrderById,
-  finishSale,
+  updateStatusSale,
   getUserById,
 };

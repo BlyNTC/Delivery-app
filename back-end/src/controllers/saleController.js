@@ -20,9 +20,10 @@ const readOne = rescue(async (req, res) => {
   res.status(status.ok).json(response);
 });
 
-const finishOne = rescue(async (req, res) => {
-  const response = await saleService.finishOne(req.params.id);
+const updateStatus = rescue(async (req, res) => {
+  const saleStatus = req.body.status;
+  const response = await saleService.updateStatus(req.params.id, saleStatus);
   res.status(status.ok).json(response);
 });
 
-module.exports = { read, create, readOne, finishOne };
+module.exports = { read, create, readOne, updateStatus };
