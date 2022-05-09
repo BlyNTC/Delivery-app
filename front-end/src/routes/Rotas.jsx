@@ -11,6 +11,8 @@ import {
   SellerOrders,
 } from '../pages';
 import MyContext from '../context';
+import Manage from '../pages/Manage';
+
 
 function Rotas() {
   const { auth } = useContext(MyContext);
@@ -18,6 +20,7 @@ function Rotas() {
     <Routes>
       {auth ? (
         <>
+          <Route path="/admin/manage" element={ <Manage /> } />
           <Route path="/customer/products" element={ <Products /> } />
           <Route path="/customer/orders/:id" element={ <OrderDetail /> } />
           <Route path="/customer/orders" element={ <Orders /> } />

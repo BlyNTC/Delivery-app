@@ -53,18 +53,12 @@ export default function Checkout() {
   };
 
   useEffect(() => {
-    setCart(cart);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cartPrice]);
-
-  useEffect(() => {
     getUserSeller().then((data) => {
       setSellers(data);
       setFormCheckout({ ...formCheckout, sellerId: data[0].id });
     });
     const cartItem = JSON.parse(localStorage.getItem('cart'));
     setCart(cartItem);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

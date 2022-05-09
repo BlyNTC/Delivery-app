@@ -81,6 +81,8 @@ function Provider({ children }) {
     localStorage.setItem('token', usuario.token);
     if (usuario.role === 'customer') {
       navigate('/customer/products');
+    } else if (usuario.role === 'administrator') {
+      navigate('/admin/manage');
     } else {
       navigate('/seller/orders');
     }
