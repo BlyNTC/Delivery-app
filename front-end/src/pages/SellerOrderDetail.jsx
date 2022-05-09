@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
-import { getOrderById, finishSale } from '../utils/axios';
+import { getOrderById, updateStatusSale } from '../utils/axios';
 import ProductTable from '../components/ProductTable';
 
 export default function OrderDetail() {
@@ -9,32 +9,44 @@ export default function OrderDetail() {
   const [loading, setLoading] = useState(true);
   const [disabledOrder, setDisabledOrder] = useState(false);
   const [disabledDelivery, setDisabledDelivery] = useState(true);
+  const [status, setStatus] = useState('');
   const { id } = useParams();
 
   useEffect(() => {
     setLoading(true);
     getOrderById(id).then((response) => {
       setOrder(response);
+      setStatus(response.status);
+      if (response.status.toLowerCase() === 'pendente') {
+        setDisabledOrder(false);
+        setDisabledDelivery(true);
+      } else if (response.status.toLowerCase() === 'preparando') {
+        setDisabledOrder(true);
+        setDisabledDelivery(false);
+      } else {
+        setDisabledOrder(true);
+        setDisabledDelivery(true);
+      }
       setLoading(false);
     });
   }, []);
 
-  const handleClick = () => {
-    finishSale(id);
-    setDisabled(true);
-    setDisabledDelivery(true);
-    setDisabledOrder(true);
+  const handleClickOrder = () => {
+    if (status.toLowerCase() === 'pendente') {
+      updateStatusSale(order.id, 'Preparando');
+      setDisabledOrder(true);
+      setDisabledDelivery(false);
+      setStatus('Preparando');
+    }
   };
 
-  useEffect(() => {
-    if (order.status) {
-      if (order.status.toLowerCase() === 'entregue') {
-        setDisabled(true);
-      } else {
-        setDisabled(false);
-      }
+  const handleClickDelivery = () => {
+    if (status.toLowerCase() === 'preparando') {
+      updateStatusSale(order.id, 'Em Trânsito');
+      setDisabledDelivery(true);
+      setStatus('Em Trânsito');
     }
-  }, [setDisabled]);
+  };
 
   return (
     <div>
@@ -55,12 +67,12 @@ export default function OrderDetail() {
           data-testid={ 'seller_order_details__'
           + 'element-order-details-label-delivery-status' }
         >
-          { disabled ? order.status : 'ENTREGUE' }
+          { status }
         </span>
         <button
           type="button"
           data-testid="seller_order_details__button-preparing-check"
-          onClick={ handleClick }
+          onClick={ handleClickOrder }
           disabled={ disabledOrder }
         >
           Preparar pedido
@@ -68,7 +80,7 @@ export default function OrderDetail() {
         <button
           type="button"
           data-testid="seller_order_details__button-dispatch-check"
-          onClick={ handleClick }
+          onClick={ handleClickDelivery }
           disabled={ disabledDelivery }
         >
           Saiu para entrega

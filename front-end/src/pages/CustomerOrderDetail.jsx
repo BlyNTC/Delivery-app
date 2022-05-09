@@ -9,6 +9,7 @@ export default function OrderDetail() {
   const [loading, setLoading] = useState(true);
   const [seller, setSeller] = useState('');
   const [disabled, setDisabled] = useState(true);
+  const [status, setStatus] = useState('');
   const { id } = useParams();
 
   // Ver requisito 26
@@ -17,6 +18,7 @@ export default function OrderDetail() {
     setLoading(true);
     getOrderById(id).then((response) => {
       setOrder(response);
+      setStatus(response.status);
       getUserById(response.seller_id).then((s) => setSeller(s.name));
       setLoading(false);
     });
@@ -24,18 +26,19 @@ export default function OrderDetail() {
 
   const handleClick = () => {
     updateStatusSale(id, 'Entregue');
+    setStatus('Entregue');
     setDisabled(true);
   };
 
   useEffect(() => {
     if (order.status) {
-      if (order.status.toLowerCase() === 'entregue') {
-        setDisabled(true);
-      } else {
+      if (order.status.toLowerCase() === 'em trânsito') {
         setDisabled(false);
+      } else {
+        setDisabled(true);
       }
     }
-  }, [setDisabled]);
+  }, [setDisabled, order]);
 
   return (
     <div>
@@ -61,7 +64,7 @@ export default function OrderDetail() {
           data-testid={ 'customer_order_details__'
           + 'element-order-details-label-delivery-status' }
         >
-          { disabled ? order.status : 'ENTREGUE' }
+          { status }
         </span>
         <button
           type="button"
